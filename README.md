@@ -1,4 +1,4 @@
-# MNIST Handwritten Digit Classifier
+# MNIST Handwritten Digit Classification
 
 ## Overview
 This project implements three different methods for classifying handwritten digits from the MNIST dataset: Deep Neural Network (DNN), Data Augmentation with DNN, and Data Augmentation with Convolutional Neural Network (CNN). The goal is to explore various approaches to improve classification accuracy and evaluate their performance.
@@ -35,4 +35,4 @@ The dataset was almost balanced (not biased).
 |Data augmentation + DNN   |`98.72%`   |`0.0365`  |
 |Data augmentation + CNN   |`99.45%`   |`0.0153`  |
  
-    
+### Contributions and suggestions are welcome! 😊
