@@ -1,0 +1,3 @@
+- DNN model: `100_model.keras`
+- Data Augmentation + DNN model: `Augmented_100_model.keras`
+- Data Augmentation + CNN model: `CNN_Augmented_100_model.keras`
