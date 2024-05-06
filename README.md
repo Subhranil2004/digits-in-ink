@@ -25,7 +25,7 @@ The dataset images can be downloaded and split into train and test sets simultan
 ## Steps to run the code
 - Upload the `MNIST_Classification.ipynb` to Google Colab and run the notebook (As Colab was used originally for training purpose)
 - To run the ipynb in local machine, just remove the code: `from google.colab import drive; drive.mount('/content/drive')` and set the paths to save and load the model accordingly.
-- To test the model without training, use the `.keras` model files in the `models` directory.
+- To test the model without training, use the `.h5` model files in the `models` directory.
 
 ## Results
 The dataset was almost balanced (not biased). 
