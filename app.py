@@ -12,7 +12,7 @@ import numpy as np
 
 # Load the saved model
 model = tf.keras.models.load_model(
-    "./models/CNN_Augmented_100_model.h5"
+    "./models/CNN_Augmented_100_model.h5", compile=False
 )  # CNN_Augmented_100_model.h5
 
 
