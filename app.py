@@ -53,6 +53,8 @@ st.sidebar.title("Classification of Handwritten Digits [0 - 9]")
 st.sidebar.write(
     "The model is trained on the ***MNIST dataset*** and uses Convolutional Neural Network with Data augmentation. It has an exceptional accuracy rate of 99.45% on MNIST test dataset."
 )
+
+st.sidebar.write("\n")
 st.sidebar.write(
     "There is always a scope for improvement and I would appreciate suggestions and/or constructive criticisms."
 )
