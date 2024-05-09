@@ -1,3 +1,4 @@
+
 # MNIST Handwritten Digit Classification
 
 ## Overview
@@ -9,7 +10,7 @@ This project implements three different methods for classifying handwritten digi
     - A basic feedforward neural network architecture.
    
 2. **Data Augmentation with DNN:**
-   - Utilizes data augmentation techniques such as rotation, translation, shearing and scaling to artificially increase the size of the training dataset.
+   - Utilizes data augmentation techniques such as rotation, translation, shearing and scaling to increase the training dataset's size artificially.
    
 3. **Data Augmentation with Convolutional Neural Network (CNN):**
    - Incorporates convolutional layers for feature extraction and spatial hierarchies, combined with data augmentation techniques.
@@ -22,9 +23,10 @@ The dataset images can be downloaded and split into train and test sets simultan
 ```python 
 (x_train, y_train),(x_test, y_test) = tensorflow.keras.datasets.mnist.load_data()
 ```
-## Steps to run the code
-- Upload the `MNIST_Classification.ipynb` to Google Colab and run the notebook (As Colab was used originally for training purpose)
-- To run the ipynb in local machine, just remove the code: `from google.colab import drive; drive.mount('/content/drive')` and set the paths to save and load the model accordingly.
+
+## Steps to run the MNIST_Classification.ipynb
+- Upload the `MNIST_Classification.ipynb` to Google Colab and run the notebook (As Colab was used originally for training purposes)
+- To run the ipynb on a local machine, remove/ comment-out the code: `from google.colab import drive; drive.mount('/content/drive')` and set the paths to save and load the model accordingly.
 - To test the model without training, use the `.h5` model files in the `models` directory.
 
 ## Results
@@ -36,4 +38,8 @@ The dataset was almost balanced (not biased).
 |Data augmentation + DNN   |`98.72%`   |`0.0365`  |
 |Data augmentation + CNN   |`99.45%`   |`0.0153`  |
  
+## Streamlit web-app
+- This interactive app enables users to upload an image of their choice, and it predicts the (handwritten) digit in the image. The most accurate (99.45%) model is used for prediction: `CNN_Augmented_100_model.h5`
+- To run the app, follow the link in the `About` section, or if you want to run it from the terminal after cloning this repo, type the following command in the terminal : `streamlit run app.py`
+
 ### Contributions and suggestions are welcome! 😊
