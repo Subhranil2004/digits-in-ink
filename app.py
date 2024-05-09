@@ -1,6 +1,5 @@
 import streamlit as st
 import tensorflow as tf
-import base64
 import time
 from PIL import Image
 import numpy as np
@@ -120,14 +119,14 @@ if uploaded_file is not None:
             res2 = res2 + 1
 
         expander = st.expander(
-            "If you aren't satisfied with the result, check the prediction probabilities below ⬇⚠️"
+            ":orange[If you aren't satisfied with the result, check the prediction probabilities below ⬇⚠️]"
         )
 
         expander.write(f"Second most probable prediction: {res2}")
         expander.write(result)  # , res2, result
         # expander.write(result)
 
-expander = st.expander("Some real life images to try with...")
+expander = st.expander("Some real life images to try with...", expanded=True)
 expander.write("Just drag-and-drop your chosen image above ")
 expander.image(
     [
@@ -136,12 +135,15 @@ expander.image(
         "./Real_Life_Images/two1.png",
         "./Real_Life_Images/nine1.png",
         "./Real_Life_Images/zero1.png",
+        "./Real_Life_Images/five3.png",
         "./Real_Life_Images/eight3.png",
-        "./Real_Life_Images/one1.png",
+        # "./Real_Life_Images/one1.png",
     ],
     width=95,
 )
-
+expander.write(
+    "All images might not give the desired result as the *1st* prediction due to low contrast. Check the probability scores in such cases."
+)
 expander = st.expander("View Model Training and Validation Results")
 expander.write("Confusion Matrix: ")
 expander.image("./images/CNN_ConfusionMatrix.png", use_column_width=True)
@@ -164,6 +166,5 @@ st.markdown(
 )
 st.markdown(
     f"""<div style="text-align: right"> Developed by Subhranil Nandy </div>""",
-    # st.link_button("GitHub", "https://github.com/Subhranil2004"),
     unsafe_allow_html=True,
 )
