@@ -53,6 +53,9 @@ st.sidebar.title("Classification of Handwritten Digits [0 - 9]")
 st.sidebar.write(
     "The model is trained on the ***MNIST dataset*** and uses Convolutional Neural Network with Data augmentation. It has an exceptional accuracy rate of 99.45% on MNIST test dataset."
 )
+st.sidebar.write(
+    "There is always a scope for improvement and I would appreciate suggestions and/or constructive criticisms."
+)
 
 
 def navigate_to_github():
@@ -160,10 +163,12 @@ expander.markdown(
     """
 )
 # Footer
+st.write("\n\n\n")
 st.markdown("---")
 st.markdown(
     f"""Drop in any discrepancies or give suggestions in `Report a bug` option within the `⋮` menu"""
 )
+
 st.markdown(
     f"""<div style="text-align: right"> Developed by Subhranil Nandy </div>""",
     unsafe_allow_html=True,
