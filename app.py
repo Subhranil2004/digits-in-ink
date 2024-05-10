@@ -49,24 +49,17 @@ with st.sidebar:
         use_column_width=True,
         output_format="JPEG",
     )
+
+st.sidebar.subheader(":blue[[Please use a desktop for the best experience.]]")
+
 st.sidebar.title("Classification of Handwritten Digits [0 - 9]")
 st.sidebar.write(
     "The model is trained on the ***MNIST dataset*** and uses Convolutional Neural Network with Data augmentation. It has an exceptional accuracy rate of 99.45% on MNIST test dataset."
 )
 
-st.sidebar.write("\n")
 st.sidebar.write(
     "There is always a scope for improvement and I would appreciate suggestions and/or constructive criticisms."
 )
-
-
-def navigate_to_github():
-    """Hides an anchor tag and triggers a click on it to open the GitHub URL"""
-    st.write(
-        "<a href='https://github.com' target='_blank' style='display: none;'>Go to GitHub</a>",
-        unsafe_allow_html=True,
-    )
-
 
 st.sidebar.link_button("GitHub", "https://github.com/Subhranil2004")
 
