@@ -16,9 +16,17 @@ Deployed at [Digits-In-Ink](https://digits-in-ink.streamlit.app/) using Streamli
 - **For running on localhost** : Prepare the environment by installing all the requirements from `requirements.txt` ( * `pandas` and `matplotlib` are required only for the ipynb file so the app will work even w/o those libs). 
 Then type the following command in the terminal : `streamlit run app.py`
 
+## Screenshots of app
+### Homepage
+![Homepage](./images/Homepage.png)
 
+### Locally browse images 
+![Browse](./images/Browse.png)
 
-## Methods Implemented:
+### Prediction along with class probabilities
+![Prediction](./images/Prediction.png)
+
+## Methods Implemented in ipynb
 
 1. **Deep Neural Network (DNN):**
     - A basic feedforward neural network architecture.
