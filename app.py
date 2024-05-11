@@ -1,7 +1,7 @@
 import streamlit as st
 import tensorflow as tf
 import time
-from PIL import Image
+from PIL import Image, ImageOps
 import numpy as np
 
 # import json
@@ -10,17 +10,36 @@ import numpy as np
 # from streamlit_lottie import st_lottie
 
 # Load the saved model
-model = tf.keras.models.load_model(
-    "./models/CNN_Augmented_100_model.h5", compile=False
-)  # CNN_Augmented_100_model.h5
+model = tf.keras.models.load_model("./models/CNN_Augmented_100_model.h5", compile=False)
 
 
 # Define a function for model inference
 def predict(image):
     # Open and preprocess the image
     img = Image.open(image)
-    img = img.resize((28, 28))  # Resize image to match model input size
-    img = img.convert("L")
+
+    # Convert the image to grayscale
+    gray_image = img.convert("L")  # ImageOps.grayscale(img)
+    # st.image(gray_image, width=500, caption="gray")
+
+    pixels = list(gray_image.getdata())
+    avg_intensity = sum(pixels) / len(pixels)
+    # st.write(f"Avg intensity : {avg_intensity}")
+
+    # Determine if background is light or dark based on average intensity
+    if avg_intensity > 80:  # Light bg
+        # Invert the colors
+        inverted_image = Image.eval(gray_image, lambda x: 255 - x)
+        # st.image(inverted_image, width=500, caption="inv")
+        gray_image = inverted_image
+
+    # TODO: Background correction (Uniformity).
+
+    # Apply histogram equalization
+    equalized_image = ImageOps.equalize(gray_image)
+    st.image(equalized_image, width=500, caption="equalized")  ###
+    img = equalized_image.resize((28, 28))  # Resize image to match model input size
+    st.image(img, width=500, caption="resized")  ###
     img_array = np.array(img)  # Convert image to NumPy array
     img_array = np.expand_dims(img_array, axis=-1)  # Add batch dimension
     # st.write("Image shape:", img_array.shape)
@@ -77,7 +96,6 @@ st.markdown(
 # Main content
 
 st.title("Classification of Handwritten Digits")
-st.write("NOTE : Use pics with dark background for best results !")
 uploaded_file = st.file_uploader(
     "Choose an image...",
     type=["jpg", "png", "bmp", "tiff"],
@@ -128,14 +146,20 @@ expander = st.expander("Some real life images to try with...", expanded=True)
 expander.write("Just drag-and-drop your chosen image above ")
 expander.image(
     [
-        "./Real_Life_Images/three2.png",
+        "./Real_Life_Images/seven4.png",
         "./Real_Life_Images/six2.png",
         "./Real_Life_Images/two1.png",
         "./Real_Life_Images/nine1.png",
         "./Real_Life_Images/zero1.png",
-        "./Real_Life_Images/five3.png",
+        "./Real_Life_Images/seven3.png",
         "./Real_Life_Images/eight3.png",
-        # "./Real_Life_Images/one1.png",
+        "./Real_Life_Images/one1.png",
+        "./Real_Life_Images/four6.png",
+        "./Real_Life_Images/five6.png",
+        "./Real_Life_Images/zero2.png",
+        "./Real_Life_Images/nine4.png",
+        "./Real_Life_Images/three6.png",
+        "./Real_Life_Images/four7.png",
     ],
     width=95,
 )
@@ -151,9 +175,9 @@ expander.image("./images/CNN_Graphs.png", use_column_width=True)
 expander = st.expander("If you are getting inaccurate results, follow these steps:")
 expander.markdown(
     """    
-    1. Use OneNote/MS Paint dark background    
-    2. Write with well-contrast colours
-    3. Thicken writing stroke
+    1. Use OneNote/MS Paint solid-colour background    
+    2. Upload small to medium size images (ideally under (600 x 600))
+    3. If large sized images are uploaded thicken its stroke
     4. Make sure digit occupies the maximum part of the image
     """
 )
