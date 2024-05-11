@@ -75,7 +75,7 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded",
     menu_items={
-        # "Get Help": "https://www.extremelycoolapp.com/help",
+        "Get Help": "https://github.com/Subhranil2004/digits-in-ink#live-demo",
         "Report a bug": "https://github.com/Subhranil2004/handwritten-digit-classification/issues",
     },
 )
