@@ -11,38 +11,58 @@ import numpy as np
 
 # Load the saved model
 model = tf.keras.models.load_model("./models/CNN_Augmented_100_model.h5", compile=False)
+# TODO : train generalized model by inverting colour of half of the digits.
 
 
-# Define a function for model inference
-def predict(image):
-    # Open and preprocess the image
-    img = Image.open(image)
+def contrast_stretching(image):
+    # Calculate the minimum and maximum pixel values in the image
+    min_val = np.min(image)
+    max_val = np.max(image)
 
+    # Apply contrast stretching
+    stretched_image = ((image - min_val) / (max_val - min_val)) * 255  # min-max
+    stretched_image = stretched_image.astype(np.uint8)  # Convert to uint8
+
+    return stretched_image
+
+
+def preprocess_image(image):
     # Convert the image to grayscale
-    gray_image = img.convert("L")  # ImageOps.grayscale(img)
-    # st.image(gray_image, width=500, caption="gray")
+    gray_image = image.convert("L")
 
+    # TODO: Background correction (Uniformity for pen and paper images). Might be homomorphic filtering
+
+    # Calculate average intensity
     pixels = list(gray_image.getdata())
     avg_intensity = sum(pixels) / len(pixels)
-    # st.write(f"Avg intensity : {avg_intensity}")
 
     # Determine if background is light or dark based on average intensity
-    if avg_intensity > 80:  # Light bg
+    if avg_intensity > 100:  # Light bg
         # Invert the colors
-        inverted_image = Image.eval(gray_image, lambda x: 255 - x)
-        # st.image(inverted_image, width=500, caption="inv")
-        gray_image = inverted_image
-
-    # TODO: Background correction (Uniformity).
+        gray_image = Image.eval(gray_image, lambda x: 255 - x)
 
     # Apply histogram equalization
     equalized_image = ImageOps.equalize(gray_image)
-    st.image(equalized_image, width=500, caption="equalized")  ###
-    img = equalized_image.resize((28, 28))  # Resize image to match model input size
-    st.image(img, width=500, caption="resized")  ###
-    img_array = np.array(img)  # Convert image to NumPy array
+
+    # Resize image to match model input size
+    resized_image = equalized_image.resize((28, 28))
+
+    # Apply contrast stretching
+    return contrast_stretching(resized_image)
+
+
+# Define a function for model inference
+# @tf.function
+def predict(image):
+    # Open and preprocess the image
+    img = Image.open(image)
+    preprocessed_image = preprocess_image(img)
+    # st.image(preprocessed_image, width=500, caption="pre")
+
+    # Convert image to NumPy array
+    img_array = np.array(preprocessed_image)
     img_array = np.expand_dims(img_array, axis=-1)  # Add batch dimension
-    # st.write("Image shape:", img_array.shape)
+
     # Make predictions using the loaded model
     prediction = model.predict(np.expand_dims(img_array, axis=0))
 
@@ -57,7 +77,6 @@ st.set_page_config(
     menu_items={
         # "Get Help": "https://www.extremelycoolapp.com/help",
         "Report a bug": "https://github.com/Subhranil2004/handwritten-digit-classification/issues",
-        # "About": "# This is a header. This is an *extremely* cool app!",
     },
 )
 
@@ -179,6 +198,10 @@ expander.markdown(
     2. Upload small to medium size images (ideally under (600 x 600))
     3. If large sized images are uploaded thicken its stroke
     4. Make sure digit occupies the maximum part of the image
+    
+    `Pen and paper images` aren't compatible with the classifier till now due to non-uniformity of background colour (illumination). Actively working on that !
+    
+    :red[Note: ] :orange[If you are getting incorrect predictions even after following the above steps, kindly drop in the image in `Report a bug` option ,i.e, by creating an issue in GitHub. That will help in improving the app further 🙂]
     """
 )
 # Footer
