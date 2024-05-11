@@ -1,8 +1,17 @@
 
-# MNIST Handwritten Digit Classification
+# MNIST Handwritten Digit Classifier Web app
 
 ## Overview
-This project implements three different methods for classifying handwritten digits from the MNIST dataset: Deep Neural Network (DNN), Data Augmentation with DNN, and Data Augmentation with Convolutional Neural Network (CNN). The goal is to explore various approaches to improve classification accuracy and evaluate their performance.
+This project implements three different methods for classifying handwritten digits from the MNIST dataset: Deep Neural Network (DNN), Data Augmentation with DNN, and Data Augmentation with Convolutional Neural Network (CNN) in MNIST_Classification.ipynb. The goal is to explore various approaches to improve classification accuracy and evaluate their performance.
+The best-fitting (CNN) model is used for prediction: `CNN_Augmented_100_model.h5` in the web app.
+
+## Live Demo
+This interactive app enables users to upload an image of their choice, and it predicts the (handwritten) digit in the image. 
+- Deployed at [Digits-In-Ink](https://digits-in-ink.streamlit.app/) using Streamlit.
+- **For running on localhost**: Prepare the environment by installing all the requirements from `requirements.txt` ( * `pandas` and `matplotlib` are required only for the ipynb file so the app will work even w/o those libs). 
+Then type the following command in the terminal : `streamlit run app.py`
+
+
 
 ## Methods Implemented:
 
@@ -37,9 +46,6 @@ The dataset was almost balanced (not biased).
 |DNN                       |`97.97%`   |`0.1070`  |
 |Data augmentation + DNN   |`98.72%`   |`0.0365`  |
 |Data augmentation + CNN   |`99.45%`   |`0.0153`  |
- 
-## Streamlit web-app
-- This interactive app enables users to upload an image of their choice, and it predicts the (handwritten) digit in the image. The most accurate (99.45%) model is used for prediction: `CNN_Augmented_100_model.h5`
-- To run the app, follow the link in the `About` section, or if you want to run it from the terminal after cloning this repo, type the following command in the terminal : `streamlit run app.py`
+
 
 ### Contributions and suggestions are welcome! 😊
