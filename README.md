@@ -12,7 +12,9 @@ Deployed at [Digits-In-Ink](https://digits-in-ink.streamlit.app/) using Streamli
    - Please use a Desktop environment for the best experience. Either manually browse for image files by clicking on `Browse files` option or try with some real life images present below the File browser by dragging and dropping onto the `Browse files` option.
    - Then click on `Predict` button to get the predicted digit. You can also view the class prediction probabilities in the expander below.
    - If you are frequently getting incorrect results try following the steps given in the expander at the end.
-   
+
+<font color='red'>NOTE: If the webapp link doesn't work properly, run the app on localhost by following the below steps.</font>
+
 - **For running on localhost** : Prepare the environment by installing all the requirements from `requirements.txt` ( * `pandas` and `matplotlib` are required only for the ipynb file so the app will work even w/o those libs). 
 Then type the following command in the terminal : `streamlit run app.py`
 
