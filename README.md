@@ -42,6 +42,9 @@ Then type the following command in the terminal : `streamlit run app.py`
 ## Dataset
 
 The MNIST dataset is a classic benchmark dataset consisting of 28x28 pixel grayscale images of handwritten digits (0-9). Each image is labeled with the corresponding digit it represents.
+More info can be found at the [MNIST homepage](http://yann.lecun.com/exdb/mnist/).
+
+![MNIST](https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png)
 
 The dataset images can be downloaded and split into train and test sets simultaneously with the code : 
 ```python 
