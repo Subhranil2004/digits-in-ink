@@ -84,7 +84,7 @@ st.set_page_config(
 with st.sidebar:
     st.image(
         "./images/image.jpg",
-        use_column_width=True,
+        use_container_width=True,
         output_format="JPEG",
     )
 
@@ -162,9 +162,10 @@ if uploaded_file is not None:
         # expander.write(result)
 
 expander = st.expander("Some real life images to try with...", expanded=True)
-expander.write("Just drag-and-drop your chosen image above ")
-expander.image(
-    [
+with expander:
+    expander.write("Just drag-and-drop your chosen image above ")
+    cols = st.columns(5)
+    image_paths = [
         "./Real_Life_Images/seven4.png",
         "./Real_Life_Images/six2.png",
         "./Real_Life_Images/two1.png",
@@ -179,17 +180,18 @@ expander.image(
         "./Real_Life_Images/nine4.png",
         "./Real_Life_Images/three6.png",
         "./Real_Life_Images/four7.png",
-    ],
-    width=95,
-)
+    ]
+
+    for i, image_path in enumerate(image_paths):
+        cols[i % 5].image(image_path, width=95)
 expander.write(
     "All images might not give the desired result as the *1st* prediction due to low contrast. Check the probability scores in such cases."
 )
 expander = st.expander("View Model Training and Validation Results")
 expander.write("Confusion Matrix: ")
-expander.image("./images/CNN_ConfusionMatrix.png", use_column_width=True)
+expander.image("./images/CNN_ConfusionMatrix.png", use_container_width=True)
 expander.write("Graphs: ")
-expander.image("./images/CNN_Graphs.png", use_column_width=True)
+expander.image("./images/CNN_Graphs.png", use_container_width=True)
 
 expander = st.expander("If you are getting inaccurate results, follow these steps:")
 expander.markdown(
