@@ -7,7 +7,7 @@ The best-fitting (CNN) model is used for prediction: `CNN_Augmented_100_model.h5
 
 ## Live Demo
 This interactive app enables users to upload an image of their choice, and it predicts the (handwritten) digit in the image. 
-Deployed at [Digits-In-Ink](https://digits-in-ink.streamlit.app/) using Streamlit.
+Deployed at [Digits-In-Ink](https://digits-in-ink-py12.streamlit.app/) using Streamlit.
 - **Usage** : 
    - Please use a Desktop environment for the best experience. Either manually browse for image files by clicking on `Browse files` option or try with some real life images present below the File browser by dragging and dropping onto the `Browse files` option.
    - Then click on `Predict` button to get the predicted digit. You can also view the class prediction probabilities in the expander below.
